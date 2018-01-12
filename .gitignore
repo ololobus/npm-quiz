@@ -1,1 +1,6 @@
 bot_token.json
+.vscode
+node_modules
+
+w2v-model.txt
+corpus.txt

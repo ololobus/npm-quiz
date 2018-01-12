@@ -1,4 +1,4 @@
-const rawData = require('./top');
+const rawData = require('./top-with-suggestions');
 const inquirer = require('inquirer');
 const pickRandom = require('pick-random');
 const _ = require('lodash');
@@ -21,7 +21,13 @@ class Game {
         'finish': true
       };
     }
-    const [correct, ...rest] = pickRandom(this.data, { count: 4 });
+    const [correct] = pickRandom(this.data);
+
+    var rest = []
+    correct.suggestions.forEach(pos => {
+      if (this.data[pos])
+        rest.push(this.data[pos]);
+    });
 
     const optionsNames = [correct, ...rest].map(opt => opt.name);
 
